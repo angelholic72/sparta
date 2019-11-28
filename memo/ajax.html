@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		function getData() {
+			$.ajax({
+				type: "GET",
+				url: "http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/bikeList/1/99",
+				data: {},
+				success: function(response){
+					//성공했을때의 로직을 기재하면 됨
+					var rentBikeStatus = response['rentBikeStatus'];
+					var row = rentBikeStatus['row'];
+					//var data = row[0]//0번째 값만 가지고오기, 39번째값만 가져와도 된다
+
+					//99개 데이터를 다 가져온다면-> result에 html append를 시키면 99개가 다 찍힌다.
+					for (var i = 0; i < row.length; i++) {
+						var stationName = row[i]['stationName']
+						var rackTotCnt = row[i]['rackTotCnt'];
+						var parkgingBikeTouch = row[i]['parkgingBikeTouch'];
+						var html = `
+							<ul>
+								<li>${stationName}</li>
+								<li>${rackTotCnt}</li>
+								<li>${parkgingBikeTouch}</li>
+							</ul>
+						`;
+						$('.result').append(html);
+					}
+				}, //,를 해줘야 함
+				error: function(error) {
+					//에러가 발생했을 때 로직
+				}
+					
+			})
+		}
+	</script>
+ 
+</head>
+<body>
+	<button onclick="getData()">데이터 가지고 오기</button> 
+	<div class='result'>
+
+	</div>
+</body>
+</html>

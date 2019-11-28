@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		function getData() {
+			$.ajax({
+				type: "GET",
+				url: "https://api.thecatapi.com/v1/images/search",
+				data: {},//Jquery 문법임, get일 경우 - data:{ user _id:13}, 현재는 data를 안써도 된다(클라 정보를 넘기는게 없으므로)
+				success: function(response){
+					var data = response[0];
+					var url = data['url'];
+					var html = '<img src ="'+ url + '"/>';
+					$('.result').append(html);
+				}
+					
+			})
+		}
+	</script>
+ 
+</head>
+<body>
+	<button onclick="getData()">데이터 가지고 오기</button> 
+	<div class='result'>
+
+	</div>
+</body>
+</html>

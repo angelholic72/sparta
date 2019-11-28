@@ -1,0 +1,162 @@
+<!doctype html>  
+<html lang="en"> 
+<head>
+
+  <title>Hello, world!</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+    * {
+      font-family: 'Stylish', sans-serif;
+    }
+    .wrap {
+      width: 900px;
+      margin: auto;
+    }
+    .comment {
+      color: blue;
+      font-weight: bold;
+    }
+
+     .form-post {
+      max-width: 500px;
+      padding: 20px;
+      margin: 20px auto 30px auto;
+      border-radius: 10px;
+      border: 2px solid;
+      display: none;
+      /*안보인다, 포스팅박스 열기하면 바뀌어야한다. css show를 쓰면 된다*/
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+
+    function openBox() {
+        //$('#posting-box').show();
+        $('#posting-box').css('display', 'flex'); //가운데로 위치
+    }
+
+    function toggleBox() {
+      var box = $('#posting-box');
+      if (box.css('display') === 'none') {
+        box.css('display', 'flex');
+        $('#postBoxBtn').text('포스팅 박스 닫기');
+      } else {
+        box.css('display', 'none');
+        $('#postBoxBtn').text('포스팅 박스 열기');
+      }
+    }
+
+    function addBox() {
+      var url = $('#articleUrl').val();
+      var comment = $('#comment').val();
+
+      //1옆에 있는 ''을 사용하면 문자열안에 변수를 넣을수 있음.  ${}, ${url} - 자바스크립트 최근 버전, 크롬에서만 됨
+      var html = `
+        <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      `
+    }
+
+  </script>
+
+
+
+</head>
+<body>
+  <div class="wrap">
+    <div class="jumbotron">
+      <h1 class="display-4">나홀로 링크 메모장!</h1>
+      <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
+      <hr class="my-4">
+      <p class="lead">
+        <a id="postBoxBtn" onclick="toggleBox()" class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
+    
+      </p>
+    </div>
+    <div id="posting-box" class="form-post">
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">아티클 URL</label>
+          <input id="articleUrl" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+        </div>
+  
+      </form>
+          <label for="exampleFormControlTextarea1">간단 코멘트</label>
+          <input id="comment" class="form-control" placeholder="">
+        <button onclick="addInput()" id="testButton" type="button" class="btn btn-primary">기사저장</button>
+        
+      </form>
+    </div>
+
+    <div class="card-columns">
+      <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+        <div class="card-body">
+          <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+          <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+          <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
